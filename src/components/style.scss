@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+.active {
+  color: red;
+  border: 1px solid #5a90f7 !important;
+  background: rgba(198, 198, 252, 0.3) !important;
+}
+.logout {
+  position: relative;
+  color: red;
+  font-family: "Montserrat", sans-serif;
+  top: -0.7em;
+}
+.header_topper {
+  position: relative;
+  background: #fff;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  height: 10%;
+  line-height: 40%;
+}
+.body {
+  position: relative;
+  background: #f5f6fc;
+  height: calc(107vh - 100px);
+  padding: 1em;
+  font-family: "Montserrat", sans-serif;
+  overflow-y: auto;
+  overflow: auto;
+}
+.wrapit {
+  width: 900px;
+  margin: 0 auto;
+}
+.headers {
+  background: transparent;
+  padding: 35px 0 10px 0px;
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  justify-content: space-between;
+}
+.body h1 {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  color: #000;
+}
+.body h6 {
+  font-size: 13px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  color: #5a90f7;
+}
+.button-colors button {
+  width: 25px;
+  height: 25px;
+
+  border: 1px solid transparent;
+
+  border-radius: 50%;
+  margin-right: 1em;
+}
+.button-shapes button {
+  background-color: #f5f6fc;
+  border: 1px solid #d3d3d8;
+  color: #000;
+  min-width: 50px;
+  padding: 3px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 50px;
+  outline: 0 !important;
+  font-size: 12px;
+
+  margin-right: 1em;
+}
+
+.colorshape {
+  position: relative;
+  display: inline-block;
+  align-items: left;
+}
+.colorshape .bg {
+  position: relative;
+  background-color: #fff;
+  display: inline-flex;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  margin-right: 1em;
+  margin-bottom: 1em;
+}
+.Round {
+  position: relative;
+  top: 25%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.Oval {
+  position: relative;
+  top: 25%;
+  height: 50px;
+  width: 100px;
+  border-radius: 50%;
+}
+.Rectangle {
+  position: relative;
+  top: 25%;
+  height: 50px;
+  width: 100px;
+}
+.Square {
+  position: relative;
+  top: 25%;
+  height: 50px;
+  width: 50px;
+}
+.body-login {
+  background: #f6f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: -20px 0 50px;
+}
+.loginform {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+  margin: 0 auto;
+  text-align: center;
+  width: 350px;
+  padding: 2em;
+  max-width: 100%;
+  min-height: 380px;
+}
+.sign-in-container {
+  position: relative;
+}
+.loginform input {
+  background-color: #eee;
+  border: none;
+  padding: 8px 15px;
+  margin: 8px 0;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 0.3em;
+  width: 100%;
+}
+.loginform h1 {
+  font-weight: bold;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  padding-bottom: 1em;
+}
+.loginform button {
+  position: relative;
+  top: 1em;
+  border-radius: 20px;
+  border: 1px solid #5a90f7;
+  background-color: #5a90f7;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+@media (max-width: 768px) {
+  .wrapit {
+    width: 99%;
+    margin: 0 auto;
+  }
+  .header_topper {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
