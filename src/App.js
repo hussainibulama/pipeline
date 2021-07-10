@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Home from "./components/home";
+import Main from "./components/main";
 import instance from "./authaxios";
 import "react-alice-carousel/lib/alice-carousel.css";
 let subdomain = window.location.host.split(".")[0];
@@ -59,7 +59,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Home />
+        <Main />
       </div>
     );
 
