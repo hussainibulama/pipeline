@@ -12,7 +12,7 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter basename="/pipeline">
+    <BrowserRouter basename={window.location.pathname || ""}>
       <App />
     </BrowserRouter>
   </React.StrictMode>,
