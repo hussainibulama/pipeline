@@ -1,0 +1,35 @@
+.App {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  width: 900px;
+  float: center;
+  text-align: center;
+}
+.App h1 {
+  position: relative;
+  font-size: 18px;
+}
+.App button.normal {
+  background: #fff;
+  color: green;
+  box-shadow: none;
+  border: none;
+}
+embed .rio {
+  width: 0px;
+  height: 50px;
+}
+.circular {
+  margin: 1em;
+  padding: 0 !important;
+  width: 200px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding-bottom: 0 !important;
+}
+.circular p {
+  background-color: #ccc;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}

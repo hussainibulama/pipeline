@@ -1,53 +1,61 @@
 import React, { Component } from "react";
 import "./App.css";
-import Main from "./components/main";
 import instance from "./authaxios";
-import "react-alice-carousel/lib/alice-carousel.css";
-let subdomain = window.location.host.split(".")[0];
-if (subdomain === "www") {
-  subdomain = window.location.host.split(".")[1];
-} else {
-  subdomain = window.location.host.split(".")[0];
-}
-let customer_key =
-  Math.floor(100000 + Math.random() * 900000) +
-  String(Math.floor(100 + Math.random() * 999));
-localStorage.setItem("customer_id", customer_key);
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       avail: "yes",
+      default: 0,
+      trending: [],
+      search: "",
+      searchans: [],
       collapse: false,
       isWideEnough: false,
     };
     this.onClick = this.onClick.bind(this);
   }
-  async componentDidMount() {
-    console.log(subdomain);
+  handleSubmit(e) {
+    e.preventDefault();
+  }
+  handleChanges = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+  async Search() {
     try {
-      let res = await instance.post("/checkstore", {
-        username: subdomain,
-      });
-      let result = await res.data;
-      if (result && result.success) {
-        this.setState({ avail: "yes" });
-        localStorage.setItem("owner_id", result.store_id);
-        localStorage.setItem("subdomain", subdomain);
-        localStorage.setItem("name", result.name);
-        localStorage.setItem("description", result.description);
-        localStorage.setItem("logo", result.logo);
-        localStorage.setItem("address", result.address);
-        localStorage.setItem("phone", result.phone);
-        localStorage.setItem("delivery", result.delivery);
-        localStorage.setItem("delivery_fee", result.delivery_fee);
-        localStorage.setItem("bg", result.bg);
-      } else if (result && result.success === false) {
-        this.setState({ avail: "no" });
-      }
+      let res = await instance.get(
+        "/search?api_key=BBllUXSslRRw4234LL4rT5VfMbKLLG6A&limit=10&q=" +
+          this.state.search,
+        {
+          api_key: "BBllUXSslRRw4234LL4rT5VfMbKLLG6A",
+        }
+      );
+      let result = await res.data.data;
+
+      this.setState({ searchans: result });
     } catch (e) {
       console.log(e);
     }
+  }
+  async componentDidMount() {
+    try {
+      let res = await instance.get(
+        "/trending?api_key=BBllUXSslRRw4234LL4rT5VfMbKLLG6A&limit=10",
+        {
+          api_key: "BBllUXSslRRw4234LL4rT5VfMbKLLG6A",
+        }
+      );
+      let result = await res.data.data;
+
+      this.setState({ trending: result });
+    } catch (e) {
+      console.log(e);
+    }
+    console.log("yes");
+    console.log(this.state.trending);
   }
 
   onClick() {
@@ -58,50 +66,115 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Main />
+      <div className="App">
+        <div className="topper">
+          <div className="centertopper">
+            <h1>Giphy Api Integration</h1>
+            <h1>
+              {this.state.default !== 1 && (
+                <>
+                  <button
+                    className="normal"
+                    onClick={() => this.setState({ default: 1 })}
+                  >
+                    Trending
+                  </button>
+                </>
+              )}
+              {this.state.default === 1 && (
+                <>
+                  <button
+                    className="normal"
+                    style={{ textDecoration: "underline" }}
+                    onClick={() => this.setState({ default: 1 })}
+                  >
+                    Trending
+                  </button>
+                </>
+              )}
+              |
+              {this.state.default !== 2 && (
+                <>
+                  <button
+                    className="normal"
+                    onClick={() => this.setState({ default: 2 })}
+                  >
+                    Search
+                  </button>
+                </>
+              )}
+              {this.state.default === 2 && (
+                <>
+                  <button
+                    className="normal"
+                    style={{ textDecoration: "underline" }}
+                    onClick={() => this.setState({ default: 2 })}
+                  >
+                    Search
+                  </button>
+                </>
+              )}
+            </h1>
+            {this.state.default === 0 ? (
+              <p>Click any of the links above</p>
+            ) : this.state.default === 1 ? (
+              <p>Trending list of Giphy:</p>
+            ) : (
+              <p>Search List of Giphy:</p>
+            )}
+          </div>
+        </div>
+        {this.state.default === 1 && (
+          <>
+            <div className="lower-imager">
+              {this.state.trending.map((data) => (
+                <>
+                  <div className="circular">
+                    <embed
+                      type="image/jpg"
+                      src={"" + data.embed_url}
+                      width="150"
+                      height="70"
+                    />
+                    <p>{data.title}</p>
+                  </div>
+                </>
+              ))}
+            </div>
+          </>
+        )}
+        {this.state.default === 2 && (
+          <>
+            <div clasName="lower-images">
+              <input type="text" onChange={this.handleChanges} name="search" />
+              <button onClick={() => this.Search()}>Search</button>
+              <p>
+                search results for{" "}
+                <i style={{ color: "maroon", textDecoration: "underline" }}>
+                  {this.state.search}
+                </i>
+              </p>
+              <div className="lower-imager">
+                {this.state.searchans.map((data) => (
+                  <>
+                    <div className="circular">
+                      <embed
+                        type="image/jpg"
+                        src={"" + data.embed_url}
+                        width="150"
+                        height="70"
+                      />
+
+                      <p>{data.title}</p>
+                    </div>
+                  </>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     );
-
-    /*
-  
-   const { avail } = this.state;
-    if (avail === "yes") {
-      return (
-        <div>
-          <Main />
-        </div>
-      );
-    } else if (avail === "no") {
-      return (
-        <div className="domain404">
-          <div className="domain4041">
-            <h2>404 Not Found</h2>
-
-            <p>
-              The subdomain {subdomain}.swip.ng doesn`t exist. please use this
-              link to signup if you are a new swip user.
-            </p>
-            <a href="http://swip.ng">Swip Home</a>
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="domain404">
-          <div className="domain4041">
-            <h2>404 Not Found</h2>
-
-            <p>
-              The subdomain {subdomain}.swip.ng doesn`t exist. please use this
-              link to signup if you are a new swip user.
-            </p>
-            <a href="http://swip.ng">Swip Home</a>
-          </div>
-        </div>
-      );
-    }
-  */
   }
 }
 
